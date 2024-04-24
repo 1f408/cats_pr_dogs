@@ -1,0 +1,6 @@
+/bin
+/app
+/deb
+/exe
+*.syso
+*.gen.go

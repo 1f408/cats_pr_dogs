@@ -1,0 +1,40 @@
+{
+  "RT_GROUP_ICON": {
+    "APP": {
+      "0000": [
+        "../../../icons/cat_pr_md_16x16.png",
+        "../../../icons/cat_pr_md_24x24.png",
+        "../../../icons/cat_pr_md_32x32.png",
+        "../../../icons/cat_pr_md_48x48.png",
+        "../../../icons/cat_pr_md_64x64.png",
+        "../../../icons/cat_pr_md_256x256.png"
+      ]
+    },
+    "OTHER": {
+        "0000": "../../../icons/cat_pr_md_256x256.png"
+    },
+    "#42": {
+        "0409": "../favicon.ico"
+    }
+  },
+  "RT_MANIFEST": {
+    "#1": {
+      "0409": {}
+    }
+  },
+  "RT_VERSION": {
+    "#1": {
+      "0409": {
+        "info": {
+          "0409": {
+            "FileDescription": "CatPrMd for previewing cats_dogs Markdown.",
+            "InternalName": "cat_pr_md",
+            "LegalCopyright": "© k2u2",
+            "OriginalFilename": "cat_pr_md.exe",
+            "ProductName": "cats_pr_dogs"
+          }
+        }
+      }
+    }
+  }
+}

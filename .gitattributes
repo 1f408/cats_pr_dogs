@@ -1,0 +1,3 @@
+*.conf	text eol=lf
+*.tmpl	text eol=lf
+*.json	text eol=lf
