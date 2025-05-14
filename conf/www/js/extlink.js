@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
   function open_url_dlg(ev){
     ev.preventDefault();
-    let url = this.getAttributeNS('http://www.w3.org/1999/xlink', 'href');
+    let url = this.getAttribute('href');
     if (url == null) {
       url = this.href;
     }
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
   function open_abs_dlg(ev){
     ev.preventDefault();
-    let url = this.getAttributeNS('http://www.w3.org/1999/xlink', 'href');
+    let url = this.getAttribute('href');
     if (url == null) {
       url = this.href;
     }
@@ -52,14 +52,44 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   }
 
+  function is_anchor(l){
+      return window.location.origin == l.origin
+      && window.location.pathname == l.pathname
+      && window.location.search == l.search;
+  }
+
   document.body.querySelectorAll("body > .contents a").forEach(function(el) {
     if(el.href == ""){ return; } 
     let l = new URL(el.href);
 
+    if(is_anchor(l)){
+      el.classList.add("anchor_link");
+    }
+
     if(window.location.origin != l.origin){
       el.addEventListener("click", open_url_dlg);
-    } else if(! l.pathname.startsWith("/file/")){
-      el.addEventListener("click", open_abs_dlg);
+    } else {
+      if(! l.pathname.startsWith("/file/")){
+        el.addEventListener("click", open_abs_dlg);
+      }
     }
+  });
+});
+window.addEventListener('beforeprint', function(){
+  document.body.querySelectorAll("body > .contents a:not(.anchor_link)").forEach(function(el) {
+    let href = el.getAttribute('href');
+    if(href == null){ return; }
+
+    el.setAttribute('save_href', href);
+    el.removeAttribute('href');
+  });
+});
+window.addEventListener('afterprint', function(){
+  document.body.querySelectorAll("body > .contents a:not(.anchor_link)").forEach(function(el) {
+    let href = el.getAttribute('save_href');
+    if(href == null){ return; }
+
+    el.setAttribute('href', href);
+    el.removeAttribute('save_href');
   });
 });
